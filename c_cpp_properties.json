@@ -1,0 +1,12 @@
+{
+  "configurations": [
+    {
+      "name": "Mac",
+      "intelliSenseMode": "msvc-x64",
+      "includePath": [
+        "C:\\Program Files\\MySQL\\MySQL Connector C++ 8.0\\lib64\\include"
+      ]
+    }
+  ],
+  "version": 4
+}

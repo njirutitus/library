@@ -1,7 +1,7 @@
 #include <iostream>
-#include<vector>
+# include<vector>
 FILE *fp;
-struct library_user{
+struct User{
 	std::string name;
 	int gender;
 	std::string phone_number;
@@ -12,28 +12,52 @@ struct library_user{
 	char password[255];
 };
 
-library_user add_user();
+struct Book {
+	std::string title;
+	std::string author;
+	std::string ISBN;
+	int copies;
+};
+
+User add_user();
+Book add_book();
 int main(int argc, char** argv) {
-    std::vector <int> marks{10,20,30};
-    std::cout<<marks[1];
+	User user;
+	Book book;
+	int choice {0};
 	std::cout<<"\tCounty Library management system"<<std::endl;
+	std::cout<<"1. Add User\n";
+	std::cout<<"2. Add Book\n";
+	std::cout<<"Your choice: ";
 	std::cout<<"\tAdd user";
-    add_user();
+	switch(choice) {
+		case 1:
+			user = add_user();
+			std::cout<<user.name<<" Successfully added"<<std::endl;
+			break;
+		case 2:
+			book = add_book();
+			std::cout<<book.title<<" Successfully added"<<std::endl;
+			break;
+		default:
+			std::cout<<"Invalid Choice\n";
+
+	}
 	
 	return 0;
 }
 
-library_user add_user(){
-	struct library_user user;
+User add_user(){
+	struct User user;
 	int choice {0};
 	std::cout<<"Enter name"<<std::endl;
 	std::cin>>user.name;
 	std::cout<<"Select gender"<<std::endl;
 	std::cout<<"1. Male"<<std::endl;
 	std::cout<<"2. Female"<<std::endl;
+	std::cout<<"Your choice: "<<std::endl;
+	std::cin>>choice;
 	do{
-        std::cout<<"Your choice: "<<std::endl;
-	    std::cin>>choice;
 		if(choice == 1){
 			user.gender = 1;
 		}
@@ -88,8 +112,23 @@ library_user add_user(){
 	}while(choice!=1 && choice!=2 && choice!=2);
 	std::cout<<"Enter Default password"<<std::endl;
 	std::cin>>user.password;
-	std::cout<<user.name<<std::endl;
 	return user;
 	
 }
+
+Book add_book(){
+	Book book;
+	std::cout<<"\t Add a new book\n";
+	std::cout<<"Book title: ";
+	std::cin>>book.title;
+	std::cout<<"Book Author";
+	std::cin>>book.author;
+	std::cout<<"ISBN: ";
+	std::cin>>book.ISBN;
+	std::cout<<"Copies: ";
+	std::cin>>book.copies;
+	std::cout<<book.title<<" Successfully added\n";
+}
+
+
 
