@@ -1,13 +1,13 @@
 #include <iostream>
 # include<vector>
-FILE *fp;
+using namespace std;
 struct User{
 	char name[200];
-	int gender;
+	string gender;
 	char phone_number[15];
 	char id_no[20];
-	unsigned int is_staff;
-	unsigned int is_admin;
+	bool is_staff;
+	bool is_admin;
 	char password[255];
 };
 
@@ -24,22 +24,22 @@ int main(int argc, char** argv) {
 	User user;
 	Book book;
 	int choice {0};
-	std::cout<<"\tCounty Library management system"<<std::endl;
-	std::cout<<"1. Add User\n";
-	std::cout<<"2. Add Book\n";
-	std::cout<<"Your choice: ";
-	std::cin>>choice;
+	cout<<"\tCounty Library management system"<<endl;
+	cout<<"1. Add User\n";
+	cout<<"2. Add Book\n";
+	cout<<"Your choice: ";
+	cin>>choice;
 	switch(choice) {
 		case 1:
 			user = add_user();
-			std::cout<<user.name<<" Successfully added"<<std::endl;
+			cout<<user.name<<" Successfully added"<<endl;
 			break;
 		case 2:
 			book = add_book();
-			std::cout<<book.title<<" Successfully added"<<std::endl;
+			cout<<book.title<<" Successfully added"<<endl;
 			break;
 		default:
-			std::cout<<"Invalid Choice\n";
+			cout<<"Invalid Choice\n";
 
 	}
 	
@@ -49,13 +49,13 @@ int main(int argc, char** argv) {
 User add_user(){
 	struct User user;
 	int choice {0};
-	std::cout<<"Enter name"<<std::endl;
-	std::cin.getline(user.name,200);
-	std::cout<<"Select gender"<<std::endl;
-	std::cout<<"1. Male"<<std::endl;
-	std::cout<<"2. Female"<<std::endl;
-	std::cout<<"Your choice: "<<std::endl;
-	std::cin>>choice;
+	cout<<"Enter name"<<endl;
+	cin.getline(user.name,200);
+	cout<<"Select gender"<<endl;
+	cout<<"1. Male"<<endl;
+	cout<<"2. Female"<<endl;
+	cout<<"Your choice: "<<endl;
+	cin>>choice;
 	do{
 		if(choice == 1){
 			user.gender = 1;
@@ -64,18 +64,18 @@ User add_user(){
 			user.gender = 0;
 		}
 		else {
-			std::cout<<"Invalid choice. Try again";
+			cout<<"Invalid choice. Try again";
 		}
 	}while(choice!=1 && choice!=2);
 	
-	std::cout<<"ID no: ";
-	std::cin>>user.id_no;
-	std::cout<<"Select User type"<<std::endl;
-	std::cout<<"1. Student"<<std::endl;
-	std::cout<<"2. Staff"<<std::endl;
-	std::cout<<"3. Admin"<<std::endl;
-	std::cout<<"Your choice: "<<std::endl;
-	std::cin>>choice;
+	cout<<"ID no: ";
+	cin>>user.id_no;
+	cout<<"Select User type"<<endl;
+	cout<<"1. Student"<<endl;
+	cout<<"2. Staff"<<endl;
+	cout<<"3. Admin"<<endl;
+	cout<<"Your choice: "<<endl;
+	cin>>choice;
 	do{
 		if(choice == 1){
 			user.is_admin = 0;
@@ -90,26 +90,26 @@ User add_user(){
 			user.is_staff = 0;
 		}
 		else {
-			std::cout<<"Invalid choice. Try again";
+			cout<<"Invalid choice. Try again";
 		}
 	}while(choice!=1 && choice!=2 && choice!=2);
-	std::cout<<"Enter Default password"<<std::endl;
-	std::cin>>user.password;
+	cout<<"Enter Default password"<<endl;
+	cin>>user.password;
 	return user;
 	
 }
 
 Book add_book(){
 	Book book;
-	std::cout<<"\t Add a new book\n";
-	std::cout<<"Book title:";
-	std::cin.getline(book.title,200,'*');
-	std::cout<<"Book Author";
-	std::cin.getline(book.author,200,'*');
-	std::cout<<"ISBN: ";
-	std::cin>>book.ISBN;
-	std::cout<<"Copies: ";
-	std::cin>>book.copies;
+	cout<<"\t Add a new book\n";
+	cout<<"Book title:";
+	cin.getline(book.title,200,'*');
+	cout<<"Book Author";
+	cin.getline(book.author,200,'*');
+	cout<<"ISBN: ";
+	cin>>book.ISBN;
+	cout<<"Copies: ";
+	cin>>book.copies;
 
 	return book;
 }
