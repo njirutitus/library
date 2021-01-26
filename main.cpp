@@ -2,20 +2,19 @@
 # include<vector>
 FILE *fp;
 struct User{
-	std::string name;
+	char name[200];
 	int gender;
-	std::string phone_number;
-	std::string id_type;
-	std::string id_no;
+	char phone_number[15];
+	char id_no[20];
 	unsigned int is_staff;
 	unsigned int is_admin;
 	char password[255];
 };
 
 struct Book {
-	std::string title;
-	std::string author;
-	std::string ISBN;
+	char title[200];
+	char author[200];
+	char ISBN[20];
 	int copies;
 };
 
@@ -29,7 +28,7 @@ int main(int argc, char** argv) {
 	std::cout<<"1. Add User\n";
 	std::cout<<"2. Add Book\n";
 	std::cout<<"Your choice: ";
-	std::cout<<"\tAdd user";
+	std::cin>>choice;
 	switch(choice) {
 		case 1:
 			user = add_user();
@@ -51,7 +50,7 @@ User add_user(){
 	struct User user;
 	int choice {0};
 	std::cout<<"Enter name"<<std::endl;
-	std::cin>>user.name;
+	std::cin.getline(user.name,200);
 	std::cout<<"Select gender"<<std::endl;
 	std::cout<<"1. Male"<<std::endl;
 	std::cout<<"2. Female"<<std::endl;
@@ -63,22 +62,6 @@ User add_user(){
 		}
 		else if(choice == 2){
 			user.gender = 0;
-		}
-		else {
-			std::cout<<"Invalid choice. Try again";
-		}
-	}while(choice!=1 && choice!=2);
-	std::cout<<"Select Identity type"<<std::endl;
-	std::cout<<"1. National ID"<<std::endl;
-	std::cout<<"2. Library No."<<std::endl;
-	std::cout<<"Your choice: "<<std::endl;
-	std::cin>>choice;
-	do{
-		if(choice == 1){
-			user.id_type = "national";
-		}
-		else if(choice == 2){
-			user.id_type = "library";
 		}
 		else {
 			std::cout<<"Invalid choice. Try again";
@@ -119,15 +102,16 @@ User add_user(){
 Book add_book(){
 	Book book;
 	std::cout<<"\t Add a new book\n";
-	std::cout<<"Book title: ";
-	std::cin>>book.title;
+	std::cout<<"Book title:";
+	std::cin.getline(book.title,200,'*');
 	std::cout<<"Book Author";
-	std::cin>>book.author;
+	std::cin.getline(book.author,200,'*');
 	std::cout<<"ISBN: ";
 	std::cin>>book.ISBN;
 	std::cout<<"Copies: ";
 	std::cin>>book.copies;
-	std::cout<<book.title<<" Successfully added\n";
+
+	return book;
 }
 
 
