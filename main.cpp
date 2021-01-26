@@ -1,63 +1,34 @@
 #include <iostream>
 # include<vector>
-
-struct Book {
+class Book{
 	char title[200];
 	char author[200];
 	char ISBN[20];
 	int copies;
+public:
+	void add_book();
 };
 
-Book add_book();
-int main(int argc, char** argv) {
-	Book book;
-	User user;
-	char name[200];
-	int choice {0};
-	std::cout<<"\tCounty Library management system"<<std::endl;
-	std::cout<<"1. Add User\n";
-	std::cout<<"2. Add Book\n";
-	std::cout<<"Your choice: ";
-	std::cin>>choice;
-	switch(choice) {
-		case 1:
-			user.add_user();
-			std::cout<<"User Successfully added"<<std::endl;
-			break;
-		case 2:
-			book = add_book();
-			std::cout<<book.title<<" Successfully added"<<std::endl;
-			break;
-		default:
-			std::cout<<"Invalid Choice\n";
-
-	}
-	
-	return 0;
-}
-
-Book add_book(){
-	Book book;
+void Book::add_book(){
 	std::cout<<"\t Add a new book\n";
 	std::cout<<"Book title:";
-	std::cin.getline(book.title,200,'*');
+	std::cin.getline(title,200,'*');
 	std::cout<<"Book Author";
-	std::cin.getline(book.author,200,'*');
+	std::cin.getline(author,200,'*');
 	std::cout<<"ISBN: ";
-	std::cin>>book.ISBN;
+	std::cin>>ISBN;
 	std::cout<<"Copies: ";
-	std::cin>>book.copies;
+	std::cin>>copies;
 
-	return book;
 }
 
 class User{
 	char name[200];
-	int gender;
+	std::string gender;
 	char phone_number[15];
 	char id_no[20];
-	unsigned int is_staff;
-	unsigned int is_admin;
+	bool is_staff;
+	bool is_admin;
 	char password[255];
 public:
 	void add_user();
@@ -74,10 +45,10 @@ void User::add_user(){
 	std::cin>>choice;
 	do{
 		if(choice == 1){
-			gender = 1;
+			gender = "male";
 		}
 		else if(choice == 2){
-			gender = 0;
+			gender = "female";
 		}
 		else {
 			std::cout<<"Invalid choice. Try again";
@@ -111,7 +82,33 @@ void User::add_user(){
 	}while(choice!=1 && choice!=2 && choice!=2);
 	std::cout<<"Enter Default password"<<std::endl;
 	std::cin>>password;
+}
+
+int main(int argc, char** argv) {
+	Book book;
+	User user;
+	char name[200];
+	int choice {0};
+	std::cout<<"\tCounty Library management system"<<std::endl;
+	std::cout<<"1. Add User\n";
+	std::cout<<"2. Add Book\n";
+	std::cout<<"Your choice: ";
+	std::cin>>choice;
+	switch(choice) {
+		case 1:
+			user.add_user();
+			std::cout<<"User Successfully added"<<std::endl;
+			break;
+		case 2:
+			book.add_book();
+			std::cout<<"Book Successfully added"<<std::endl;
+			break;
+		default:
+			std::cout<<"Invalid Choice\n";
+
+	}
 	
+	return 0;
 }
 
 
