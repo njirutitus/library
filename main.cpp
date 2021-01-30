@@ -74,12 +74,12 @@ void User::add_user(){
 		}
 		else if(choice == 3){
 			is_admin = 1;
-			is_staff = 0;
+			is_staff = 1;
 		}
 		else {
 			std::cout<<"Invalid choice. Try again";
 		}
-	}while(choice!=1 && choice!=2 && choice!=2);
+	}while(choice!=1 && choice!=2 && choice!=3);
 	std::cout<<"Enter Default password"<<std::endl;
 	std::cin>>password;
 }
