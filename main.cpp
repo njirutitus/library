@@ -7,7 +7,7 @@ class Book{
 	char ISBN[20];
 	int copies;
 public:
-	void add_book(char t[200],char a[200],char i[20], int c);
+	void add_book(const char t[200],const char a[200],const char i[20], const int c);
 };
 
 class User{
@@ -19,7 +19,7 @@ class User{
 	bool is_admin;
 	char password[255];
 public:
-	void add_user(char n[200],std::string g,char p[15],char id[20], bool stf, bool admn, char pass[255]);
+	void add_user(const char n[200],const std::string g,const char p[15],const char id[20], const bool stf, const bool admn, const char pass[255]);
 };
 
 class Calendar {
@@ -33,7 +33,7 @@ public:
 	int day_of_the_week(int year, int month, int day);
 };
 
-void Book::add_book(char t[200],char a[200],char i[20], int c){
+void Book::add_book(const char t[200],const char a[200],const char i[20], const int c){
 	strcpy(title,t);
 	strcpy(author,a);
 	strcpy(ISBN,i);
@@ -41,7 +41,7 @@ void Book::add_book(char t[200],char a[200],char i[20], int c){
 
 }
 
-void User::add_user(char n[200],std::string g,char p[15],char id[20], bool stf, bool admn, char pass[255]){
+void User::add_user(const char n[200],const std::string g,const char p[15],const char id[20], const bool stf, const bool admn, const char pass[255]){
 	strcpy(name,n);
 	gender = g;
 	strcpy(phone_number,p);
