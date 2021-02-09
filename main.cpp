@@ -1,25 +1,56 @@
+/*************************************** 
+* Community Library management system  *
+* Requires atleast c++11.              *
+* Might however include c++20 features *
+* Written by Titus Njiru               *
+* February 2021                        *
+***************************************/
 #include <iostream>
 #include<vector>
 #include<string.h>
-class Book{
-	char title[200];
-	char author[200];
-	char ISBN[20];
-	int copies;
+
+using namespace std;
+//parent class
+class Library {
+  bool is_logged_in = false;
+  const string admin_pass = "password";
 public:
-	void add_book(const char t[200],const char a[200],const char i[20], const int c);
+ //login user
+  void login(string pass){
+    if(pass == admin_pass) {
+      is_logged_in = true;
+    }
+  }
+  //check if user is logged in
+  bool check_login(){
+    return is_logged_in;
+  }
+
+  void logout(){
+    is_logged_in = false;
+  }
+
 };
 
-class User{
-	char name[200];
-	std::string gender;
-	char phone_number[15];
-	char id_no[20];
+class Book:public Library{
+	string title;
+	string author;
+	string ISBN;
+	int copies;
+public:
+	bool add_book(const string t,const string a,const string i, const int c, const string pass);
+};
+
+class User:public Library{
+	string name;
+	string gender;
+	string phone_number;
+	string id_no;
 	bool is_staff;
 	bool is_admin;
-	char password[255];
+	string password;
 public:
-	void add_user(const char n[200],const std::string g,const char p[15],const char id[20], const bool stf, const bool admn, const char pass[255]);
+	bool add_user(const string n,const string g,const string p,const string id, const bool stf, const bool admn, const string pass);
 };
 
 class Calendar {
@@ -33,21 +64,33 @@ public:
 	int day_of_the_week(int year, int month, int day);
 };
 
-void Book::add_book(const char t[200],const char a[200],const char i[20], const int c){
-	strcpy(title,t);
-	strcpy(author,a);
-	strcpy(ISBN,i);
+bool Book::add_book(const string t,const string a,const string i, const int c, const string pass){
+  login(pass);
+  if(check_login()){
+	title = t;
+	author = a;
+	ISBN = i;
 	copies = c;
+  logout();
+  return true;
+  }
+  return false;
 
 }
 
-void User::add_user(const char n[200],const std::string g,const char p[15],const char id[20], const bool stf, const bool admn, const char pass[255]){
-	strcpy(name,n);
-	gender = g;
-	strcpy(phone_number,p);
-	strcpy(id_no,id);
-	is_staff = stf;
-	is_admin = admn;
+bool User::add_user(const string n,const string g,const string p,const string id, const bool stf, const bool admn, const string pass){
+  login(pass);
+  if(check_login()) {
+    name = n;
+    gender = g;
+    phone_number = p;
+    id_no = id;
+    is_staff = stf;
+    is_admin = admn;
+    logout();
+    return true;
+  }
+  return false;
 }
 
 void Calendar::print_header(const int year, const int month) {
@@ -192,13 +235,23 @@ void Calendar::print_calendar(int year, int month) {
 
 }
 
-int main(int argc, char** argv) {
+int main() {
 	Book book;
 	User user;
 	Calendar calendar;
-	book.add_book("Grasp","Sanjay sarma","61234678",5);
-	user.add_user("Titus Njiru","male","0707015033","123456",true,false,"kimanthi");
+  bool result;
+  cout<<"\tCommunity Library Management System\n";
 	calendar.print_calendar(2021,2);
+  cout<<endl;
+  //Try to add Book
+	result = book.add_book("Grasp","Sanjay sarma","61234678",5,"password");
+  if (result) cout<<"Successful"<<endl;
+  else cout << "Failed" << endl;
+  
+  //Try to add user
+	result = user.add_user("Titus Njiru","male","0707015033","123456",true,false,"kimanthi");
+  if (result) cout<<"Successful"<<endl;
+  else cout << "Failed" << endl;
 	
 	return 0;
 }
