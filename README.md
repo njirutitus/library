@@ -9,4 +9,4 @@ Meant to demostrate basics of Object Oriented Programming in C++
 3. Run the following command to compile the program
    `g++ main.cpp -o ./build/main.exe -std=c++20`
 4. Executing the program
-   `./build/main.exe
+   `./build/main.exe`
